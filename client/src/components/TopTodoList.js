@@ -16,7 +16,7 @@ const TopTodoList = () => {
 
     const createTask = (text) => {
         if (text === '') {
-            return
+            return alert('Minimum task length 10 characters')
         } else {
             const fields = {
                 text: text,
