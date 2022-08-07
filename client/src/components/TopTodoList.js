@@ -3,6 +3,7 @@ import { Button, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './TopTodoList.module.css';
 import { changeInputAction } from '../store/inputReducer';
+import { fetchCreateTask } from '../asyncAction/tasks';
 
 const TopTodoList = () => {
 
@@ -17,9 +18,12 @@ const TopTodoList = () => {
         if (text === '') {
             return
         } else {
-            const newTask = { id: Date.now(), text: text, checked: false };
-            dispatch({ type: "CHANGE_INPUT_TEXT", payload: '' });
-            dispatch({ type: "ADD_TASK", payload: newTask });
+            const fields = {
+                text: text,
+                status: false
+            }
+            dispatch(changeInputAction(''))
+            dispatch(fetchCreateTask(fields))
         }
     }
 

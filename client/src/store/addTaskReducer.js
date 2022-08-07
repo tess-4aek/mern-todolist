@@ -2,44 +2,36 @@ const defaultState = {
     tasks: []
 }
 
+const GET_TASKS = "GET_TASKS";
 const ADD_TASK = "ADD_TASK";
-const SWITCH_CHECKBOX = "SWITCH_CHECKBOX";
-const CHANGE_TEXT = "CHANGE_TEXT";
 const DELETE_TASK = "DELETE_TASK";
 const CLEAR_ALL = "CLEAR_ALL";
+const UPDATE_TASK = "UPDATE_TASK";
 
 export const addTaskReducer = (state = defaultState, action) => {
     switch (action.type) {
+        case GET_TASKS:
+            return {...state, tasks: action.payload }
         case ADD_TASK:
             return {...state, tasks: [...state.tasks, action.payload] }
-        case SWITCH_CHECKBOX:
+        case UPDATE_TASK:
             return {
                 ...state,
                 tasks: state.tasks.map(
-                    task => task.id === action.id ? {
+                    task => action.payload._id === task._id ? {
                         ...task,
-                        checked: action.payload
+                        text: action.payload.text,
+                        status: action.payload.status
                     } :
                     task
-                ),
-            }
-        case CHANGE_TEXT:
-            return {
-                ...state,
-                tasks: state.tasks.map(
-                    task => task.id === action.id && action.payload !== '' ? {
-                        ...task,
-                        text: action.payload
-                    } :
-                    task
-                ),
+                )
             }
         case DELETE_TASK:
             return {
                 ...state,
                 tasks: state.tasks.filter(
                     function(task) {
-                        return task.id !== action.id
+                        return task._id !== action.id
                     }
                 ),
             }
@@ -50,8 +42,8 @@ export const addTaskReducer = (state = defaultState, action) => {
     }
 }
 
+export const getTasksAction = (payload) => ({ type: GET_TASKS, payload });
 export const addTaskAction = (payload) => ({ type: ADD_TASK, payload });
-export const switchCheckboxAction = (payload, id) => ({ type: SWITCH_CHECKBOX, payload, id });
-export const changeTextAction = (payload, id) => ({ type: CHANGE_TEXT, payload, id });
 export const deleteTaskAction = (id) => ({ type: DELETE_TASK, id });
 export const clearAllAction = () => ({ type: CLEAR_ALL });
+export const updateTaskAction = (payload) => ({ type: UPDATE_TASK, payload });

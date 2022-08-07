@@ -36,9 +36,18 @@ export const update = async(req, res) => {
     }
 }
 
+export const deleteTasks = async(req, res) => {
+    try {
+        const tasks = await TaskService.deleteTasks();
+        return res.json(tasks);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 export const deleteTask = async(req, res) => {
     try {
-        const task = await TaskService.deleteTask(req.body._id);
+        const task = await TaskService.deleteTask(req.params.id);
         return res.json(task);
     } catch (e) {
         console.log(e);

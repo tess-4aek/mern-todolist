@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
 import style from './BottomTodoList.module.css';
-import { clearAllAction } from '../store/addTaskReducer';
+import { fetchDeleteAll } from '../asyncAction/tasks';
 
 const BottomTodoList = () => {
 
@@ -10,13 +10,13 @@ const BottomTodoList = () => {
     const tasks = useSelector(state => state.tasks.tasks);
 
     const clearAll = () => {
-        dispatch(clearAllAction());
+        dispatch(fetchDeleteAll());
     }
 
     const completedTasks = () => {
         let counter = 0;
         tasks.forEach(task => {
-            if (task.checked === true) {
+            if (task.status === true) {
                 counter += 1;
             }
         });
@@ -26,7 +26,7 @@ const BottomTodoList = () => {
     return (
         <div className={style.wrapper}>
             <div>Total tasks: {tasks.length}</div>
-            <div>Completed tasks: {completedTasks()}</div>
+            <div>Completed tasks: {tasks.length > 0 ? completedTasks() : 0}</div>
             <Button onClick={() => clearAll()} variant='contained'>Clear All</Button>
         </div>
     );

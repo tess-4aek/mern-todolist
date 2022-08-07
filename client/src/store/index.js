@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { addTaskReducer } from "./addTaskReducer";
 import { inputReducer } from "./inputReducer";
-import { composeWidthDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from '@redux-devtools/extension';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
@@ -9,5 +9,4 @@ const rootReducer = combineReducers({
     input: inputReducer
 })
 
-// export const store = createStore(rootReducer, composeWidthDevTools(applyMiddleware(thunk)));
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

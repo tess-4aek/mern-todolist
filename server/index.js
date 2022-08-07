@@ -26,7 +26,8 @@ app.use(cors());
 app.post('/', taskValidation, handleValidationErrors, TaskController.create);
 app.get('/', TaskController.getAll);
 app.put('/', taskValidation, handleValidationErrors, TaskController.update);
-app.delete('/', TaskController.deleteTask);
+app.delete('/', TaskController.deleteTasks);
+app.delete('/:id', TaskController.deleteTask);
 
 const start = async() => {
     try {

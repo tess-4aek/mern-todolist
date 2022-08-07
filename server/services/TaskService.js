@@ -23,12 +23,16 @@ class TaskService {
         return updatedTask;
     }
 
+    async deleteTasks() {
+        const tasks = await TaskModel.remove({});
+        return tasks;
+    }
+
     async deleteTask(id) {
         if (!id) {
-            const task = await TaskModel.remove({});
-            return task;
+            throw new Error('ID not specified !');
         } else {
-            const task = await TaskModel.findByIdAndDelete(id);
+            const task = await TaskModel.deleteOne({ _id: id });
             return task;
         }
     }
