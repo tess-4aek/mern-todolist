@@ -1,10 +1,10 @@
 import axios from '../axios.js';
 import { addTaskAction, clearAllAction, deleteTaskAction, getTasksAction, updateTaskAction } from '../store/addTaskReducer.js';
 
-export const fetchTasks = () => {
+export const fetchTasks = (filter) => {
     return async dispatch => {
         const { data } = await axios.get('/');
-        dispatch(getTasksAction(data))
+        dispatch(getTasksAction(data, filter))
     }
 }
 

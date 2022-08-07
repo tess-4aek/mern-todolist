@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Checkbox } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './MiddleTodoList.module.css';
 import { fetchDeleteOneTask, fetchTasks, fetchUpdate } from '../asyncAction/tasks';
 
 const MiddleTodoList = () => {
+
+    const [status, setStatus] = useState(null);
+    const [btnStatus, setBtnStatus] = useState([true, false, false])
+
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.tasks.tasks);
 
@@ -34,33 +38,91 @@ const MiddleTodoList = () => {
 
 
 
+
+
     return (
         <div className={style.wrapper}>
+            <div className={style.filterWrapper}>
+                <Button
+                    variant='contained'
+                    disabled={btnStatus[0]}
+                    onClick={() => {
+                        setStatus(null)
+                        setBtnStatus([true, false, false])
+                    }}
+                >
+                    All
+                </Button>
+                <Button
+                    variant='contained'
+                    disabled={btnStatus[1]}
+                    onClick={() => {
+                        setStatus(true)
+                        setBtnStatus([false, true, false])
+                    }}
+                >
+                    Completed
+                </Button>
+                <Button
+                    variant='contained'
+                    disabled={btnStatus[2]}
+                    onClick={() => {
+                        setStatus(false)
+                        setBtnStatus([false, false, true])
+                    }}
+                >
+                    Uncompleted
+                </Button>
+            </div>
             {
                 tasks.length > 0 ?
-
-                    tasks.map(task =>
-                        <Card
-                            key={task._id}
-                            className={style.task}
-                            style={{ border: `1px solid ${task.status === true ? 'green' : 'transparent'}` }}
-                            onDoubleClick={() => changeText(prompt(), task)}
-                        >
-                            <Checkbox
-                                onClick={() => switchState(task)}
-                                checked={task.status}
-                            />
-                            <div className={style.text}>
-                                {task.text}
-                            </div>
-                            <Button
-                                variant='contained'
-                                className={style.button}
-                                onClick={() => deleteTask(task)}
-                            >del</Button>
-                        </Card>
-
-                    )
+                    status !== null ?
+                        tasks.filter(
+                            function (task) {
+                                return task.status === status
+                            }
+                        ).map(task =>
+                            <Card
+                                key={task._id}
+                                className={style.task}
+                                style={{ border: `1px solid ${task.status === true ? 'green' : 'transparent'}` }}
+                                onDoubleClick={() => changeText(prompt(), task)}
+                            >
+                                <Checkbox
+                                    onClick={() => switchState(task)}
+                                    checked={task.status}
+                                />
+                                <div className={style.text}>
+                                    {task.text}
+                                </div>
+                                <Button
+                                    variant='contained'
+                                    className={style.button}
+                                    onClick={() => deleteTask(task)}
+                                >del</Button>
+                            </Card>
+                        )
+                        : tasks.map(task =>
+                            <Card
+                                key={task._id}
+                                className={style.task}
+                                style={{ border: `1px solid ${task.status === true ? 'green' : 'transparent'}` }}
+                                onDoubleClick={() => changeText(prompt(), task)}
+                            >
+                                <Checkbox
+                                    onClick={() => switchState(task)}
+                                    checked={task.status}
+                                />
+                                <div className={style.text}>
+                                    {task.text}
+                                </div>
+                                <Button
+                                    variant='contained'
+                                    className={style.button}
+                                    onClick={() => deleteTask(task)}
+                                >del</Button>
+                            </Card>
+                        )
                     :
                     <div className={style.empty}>Task list is empty</div>
             }

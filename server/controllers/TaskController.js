@@ -33,6 +33,9 @@ export const update = async(req, res) => {
         return res.json(updatedTask);
     } catch (e) {
         console.log(e);
+        res.status(500).json({
+            message: 'Failed to update tasks'
+        });
     }
 }
 
@@ -42,6 +45,9 @@ export const deleteTasks = async(req, res) => {
         return res.json(tasks);
     } catch (e) {
         console.log(e);
+        res.status(500).json({
+            message: 'Failed to delete tasks'
+        });
     }
 }
 
@@ -51,5 +57,8 @@ export const deleteTask = async(req, res) => {
         return res.json(task);
     } catch (e) {
         console.log(e);
+        res.status(500).json({
+            message: 'Failed to delete task'
+        });
     }
 }

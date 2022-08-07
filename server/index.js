@@ -6,7 +6,6 @@ import { taskValidation } from './validations/task.js';
 import handleValidationErrors from './middlewares/handleValidationErrors.js';
 import * as TaskController from './controllers/TaskController.js';
 
-
 dotenv.config();
 mongoose
     .connect(process.env.DB_URL)
@@ -16,12 +15,8 @@ mongoose
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-
 app.use(express.json());
 app.use(cors());
-
-
-
 
 app.post('/', taskValidation, handleValidationErrors, TaskController.create);
 app.get('/', TaskController.getAll);

@@ -11,6 +11,28 @@ const UPDATE_TASK = "UPDATE_TASK";
 export const addTaskReducer = (state = defaultState, action) => {
     switch (action.type) {
         case GET_TASKS:
+            // console.log(action.filter);
+            // if (action.filter === 'completed') {
+            //     return {
+            //         ...state,
+            //         tasks: state.tasks.filter(
+            //             function(task) {
+            //                 return task.status === true
+            //             }
+            //         ),
+            //     }
+            // } else if (action.filter === 'uncompleted') {
+            //     return {
+            //         ...state,
+            //         tasks: state.tasks.filter(
+            //             function(task) {
+            //                 return task.status === false
+            //             }
+            //         ),
+            //     }
+            // } else {
+
+            // }
             return {...state, tasks: action.payload }
         case ADD_TASK:
             return {...state, tasks: [...state.tasks, action.payload] }
@@ -42,7 +64,7 @@ export const addTaskReducer = (state = defaultState, action) => {
     }
 }
 
-export const getTasksAction = (payload) => ({ type: GET_TASKS, payload });
+export const getTasksAction = (payload, filter) => ({ type: GET_TASKS, payload, filter });
 export const addTaskAction = (payload) => ({ type: ADD_TASK, payload });
 export const deleteTaskAction = (id) => ({ type: DELETE_TASK, id });
 export const clearAllAction = () => ({ type: CLEAR_ALL });
