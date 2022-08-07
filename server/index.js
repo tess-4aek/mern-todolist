@@ -30,7 +30,7 @@ app.post('/', taskValidation, handleValidationErrors, async(req, res) => {
 
         const task = await doc.save();
 
-        res.json(task)
+        res.json(task);
     } catch (e) {
         console.log(e);
         res.status(500).json({
@@ -40,7 +40,17 @@ app.post('/', taskValidation, handleValidationErrors, async(req, res) => {
 
 });
 
-
+app.get('/', async(req, res) => {
+    try {
+        const task = await TaskModel.find();
+        res.json(task);
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({
+            message: 'Failed to load tasks'
+        });
+    }
+})
 
 
 const start = async() => {
