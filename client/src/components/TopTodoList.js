@@ -1,12 +1,11 @@
 import React from 'react';
-import { Button, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import style from './TopTodoList.module.css';
 import { changeInputAction } from '../store/inputReducer';
 import { fetchCreateTask } from '../asyncAction/tasks';
+import { Button, TextField } from '@mui/material';
+import style from './TopTodoList.module.css';
 
 const TopTodoList = () => {
-
     const dispatch = useDispatch();
     const inputText = useSelector(state => state.input.text);
 
@@ -15,7 +14,7 @@ const TopTodoList = () => {
     }
 
     const createTask = (text) => {
-        if (text === '') {
+        if (text.length < 10) {
             return alert('Minimum task length 10 characters')
         } else {
             const fields = {

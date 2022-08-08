@@ -1,4 +1,3 @@
-import TaskModel from '../models/Task.js';
 import TaskService from '../services/TaskService.js';
 
 
@@ -12,7 +11,6 @@ export const create = async(req, res) => {
             message: 'Failed to create new task'
         });
     }
-
 }
 
 export const getAll = async(req, res) => {

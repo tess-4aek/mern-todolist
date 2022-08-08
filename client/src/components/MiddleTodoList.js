@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Checkbox } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import style from './MiddleTodoList.module.css';
 import { fetchDeleteOneTask, fetchTasks, fetchUpdate } from '../asyncAction/tasks';
+import { Button, Card, Checkbox } from '@mui/material';
+import style from './MiddleTodoList.module.css';
 
 const MiddleTodoList = () => {
-
     const [status, setStatus] = useState(null);
     const [btnStatus, setBtnStatus] = useState([true, false, false])
 
@@ -35,10 +34,6 @@ const MiddleTodoList = () => {
     const deleteTask = (task) => {
         dispatch(fetchDeleteOneTask(task._id));
     }
-
-
-
-
 
     return (
         <div className={style.wrapper}>

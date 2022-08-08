@@ -1,6 +1,4 @@
-const defaultState = {
-    text: ''
-}
+const defaultState = { text: '' }
 
 const CHANGE_INPUT_TEXT = "CHANGE_INPUT_TEXT";
 

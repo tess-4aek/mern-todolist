@@ -1,42 +1,36 @@
-import Task from '../models/Task.js';
 import TaskModel from '../models/Task.js';
 
 class TaskService {
-    async create(text, status) {
-        const createdTask = await TaskModel.create({
+    create(text, status) {
+        return TaskModel.create({
             text: text,
             status: status
         })
-        return createdTask;
     }
 
-    async getAll() {
-        const tasks = await TaskModel.find();
-        return tasks;
+    getAll() {
+        return TaskModel.find();
     }
 
-    async update(task) {
+    update(task) {
         if (!task._id) {
             throw new Error('ID not specified !');
         }
-        const updatedTask = await TaskModel.findByIdAndUpdate(task._id, task, { new: true });
-        return updatedTask;
+
+        return TaskModel.findByIdAndUpdate(task._id, task, { new: true });
     }
 
-    async deleteTasks() {
-        const tasks = await TaskModel.remove({});
-        return tasks;
+    deleteTasks() {
+        return TaskModel.remove({});
     }
 
-    async deleteTask(id) {
+    deleteTask(id) {
         if (!id) {
             throw new Error('ID not specified !');
-        } else {
-            const task = await TaskModel.deleteOne({ _id: id });
-            return task;
         }
-    }
 
+        return TaskModel.deleteOne({ _id: id });
+    }
 }
 
 export default new TaskService();

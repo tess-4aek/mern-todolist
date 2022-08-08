@@ -1,9 +1,10 @@
 import React from 'react';
 import ToDoList from './components/TodoList.js';
+import style from './App.module.css';
 
 const App = () => {
   return (
-    <div style={{display: 'flex', width: window.innerWidth, height: window.innerHeight, justifyContent: 'center', alignItems: 'center'}}>
+    <div className={style.wrapper}>
       <ToDoList />
     </div>
   );

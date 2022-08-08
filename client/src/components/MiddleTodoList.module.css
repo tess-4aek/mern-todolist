@@ -1,6 +1,6 @@
 .wrapper {
-    margin: 10px 0px;
     overflow-y: auto;
+    margin: 10px 0px;
 }
 
 .filterWrapper {
@@ -14,10 +14,10 @@
 }
 
 .empty {
-    font-size: 36px;
-    font-weight: 100;
     justify-self: center;
     align-self: center;
+    font-size: 36px;
+    font-weight: 100;
 }
 
 .task {
@@ -26,8 +26,8 @@
     column-gap: 10px;
     align-items: center;
     cursor: pointer;
-    padding: 10px;
     margin: 0 10px 10px 0;
+    padding: 10px;
 }
 
 .text {

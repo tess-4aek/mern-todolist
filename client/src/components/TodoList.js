@@ -6,9 +6,6 @@ import MiddleTodoList from './MiddleTodoList.js';
 import style from './TodoList.module.css';
 
 const TodoList = () => {
-
-
-
     return (
         <Card variant='outlined' className={style.todoBody}>
             <TopTodoList />

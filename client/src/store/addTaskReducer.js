@@ -1,6 +1,4 @@
-const defaultState = {
-    tasks: []
-}
+const defaultState = { tasks: [] }
 
 const GET_TASKS = "GET_TASKS";
 const ADD_TASK = "ADD_TASK";
@@ -11,28 +9,6 @@ const UPDATE_TASK = "UPDATE_TASK";
 export const addTaskReducer = (state = defaultState, action) => {
     switch (action.type) {
         case GET_TASKS:
-            // console.log(action.filter);
-            // if (action.filter === 'completed') {
-            //     return {
-            //         ...state,
-            //         tasks: state.tasks.filter(
-            //             function(task) {
-            //                 return task.status === true
-            //             }
-            //         ),
-            //     }
-            // } else if (action.filter === 'uncompleted') {
-            //     return {
-            //         ...state,
-            //         tasks: state.tasks.filter(
-            //             function(task) {
-            //                 return task.status === false
-            //             }
-            //         ),
-            //     }
-            // } else {
-
-            // }
             return {...state, tasks: action.payload }
         case ADD_TASK:
             return {...state, tasks: [...state.tasks, action.payload] }

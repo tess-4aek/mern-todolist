@@ -1,11 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchDeleteAll } from '../asyncAction/tasks';
 import { Button } from '@mui/material';
 import style from './BottomTodoList.module.css';
-import { fetchDeleteAll } from '../asyncAction/tasks';
 
 const BottomTodoList = () => {
-
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.tasks.tasks);
 
